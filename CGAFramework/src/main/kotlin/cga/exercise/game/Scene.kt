@@ -28,11 +28,6 @@ import org.lwjgl.opengl.GL15
 class Scene(private val window: GameWindow)  {
      val staticShader: ShaderProgram
 
-    /*BENÖTIGT???
-    private val tronShader: ShaderProgram
-    private val depthShader: ShaderProgram
-    private val testShader : ShaderProgram*/
-
 
     var bodenr :Renderable
 
@@ -46,7 +41,7 @@ class Scene(private val window: GameWindow)  {
     var pointlight :PointLight
     var spotligt :SpotLight
 
-    //MERVE
+    //Elemente
     var cup: Renderable
     var cube: Renderable
     var tisch: Renderable
@@ -90,7 +85,7 @@ class Scene(private val window: GameWindow)  {
         tisch.scaleLocal(Vector3f(0.03f, 0.03f, 0.03f))
 
 
-        //Werden hier aus dem Boden Object Mesh Daten gemacht?
+        //
         val res2: OBJLoader.OBJResult = OBJLoader.loadOBJ("assets/models/ground.obj")
         val objMesh2: OBJLoader.OBJMesh = res2.objects[0].meshes[0]
 
@@ -211,24 +206,13 @@ class Scene(private val window: GameWindow)  {
 
         }
 
-        //Springen, werfen
 
-        if(window.getKeyState(GLFW_KEY_SPACE)&&jumps == 0){
-            cube.translateLocal(Vector3f(0.0f,100.0f,0f*dt))
-            jumps = 1
-        }
-
-        //RESET
-        if(window.getKeyState(GLFW_KEY_LEFT_ALT)&&jumps>0){
-            cube.translateLocal(Vector3f(0.0f,-100f,0f*dt))
-            jumps = 0
-        }
 
     }
 
     fun onKey(key: Int, scancode: Int, action: Int, mode: Int) {}
 
-    //was ist das??
+
     var alt_xpos: Double = 0.0
     var alt_ypos: Double = 0.0
 
@@ -244,14 +228,14 @@ class Scene(private val window: GameWindow)  {
         val diff_y = alt_ypos - ypos
 
       // vorgegeben
-        // var olpx =0.0
-       // var oldpy =0.0
+         var olpx =0.0
+        var oldpy =0.0
 
         //Maus/Kamera um die Spielfigur bewegen
         camera.rotateAroundPoint(0f, diff_x.toFloat() * 0.001f, 0f, cube.getYAxis())
         //camera.rotateAroundPoint(diff_y.toFloat() * 0.001f, 0f, 0f, cat.getXAxis())
 
-        /*
+
         val distanceX = window.mousePos.xpos - olpx
         val distanceY = window.mousePos.ypos - oldpy
 
@@ -272,7 +256,7 @@ class Scene(private val window: GameWindow)  {
         oldpy = window.mousePos.ypos
 
 
-         */
+
 
 
 
